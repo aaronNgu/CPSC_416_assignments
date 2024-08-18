@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+    <div style="display:flex;justify-content:center;">
+        <button type="button" id="option1">get posts</button>
+        &nbsp;&nbsp;
+        <button type="button" id="option2">get char credit</button>
+        &nbsp;&nbsp;
+        <form method="POST" action="/createpost">
+            <label>Post</label>&nbsp;&nbsp;<input name="post" type="text" value="" />
+            <input type="submit" value="create post" />
+        </form>
+    </div>
+    <br />
+    <br />
+    <div style="display:flex;justify-content:center;">
+        {{if .CharCredit}}
+        <h3>Character Credit = {{.CharCredit}}</h3>
+        {{end}}
+
+        {{if .CreatePostResponse}}
+        <div>
+            <h3>Post successfully added to blockchain: </h3>
+            <br />
+            <p>{{.CreatePostResponse}}</p>
+        </div>
+        {{end}}
+
+        <div style="display:flex;justify-content:center;align-items:center;flex-direction: column;">
+            {{if .Posts}}
+            <h3> Posts </h3>
+            <ul>
+                {{range .Posts}}
+                <li style="list-style:none;">{{.}}</li>
+                <br />
+                {{end}}
+            </ul>
+            {{end}}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("option1").onclick = function () {
+            location.href = "./getposts";
+        };
+        document.getElementById("option2").onclick = function () {
+            location.href = "./getcharcredit";
+        };
+    </script>
+
+</body>
+
+</html>
